@@ -30,6 +30,13 @@
 
 <div align="center">
   <img src="docs/screenshots/keyboard_showcase.png" alt="Key23 Keycap HUD" width="85%">
+  <br/><br/>
+  <p>
+    <img src="docs/keys/combo_ctrl_c.png" alt="Ctrl + C" width="135">&nbsp;&nbsp;
+    <img src="docs/keys/combo_ctrl_v.png" alt="Ctrl + V" width="135">&nbsp;&nbsp;
+    <img src="docs/keys/combo_alt_tab.png" alt="Alt + Tab" width="155">&nbsp;&nbsp;
+    <img src="docs/keys/combo_win_shift_s.png" alt="Win + Shift + S" width="210">
+  </p>
 </div>
 
 - **Real-time key display** — Every keystroke appears on screen the moment it is pressed, with smooth pop and fade-out animations.
@@ -55,6 +62,16 @@
 ---
 
 ### Settings & Theming
+
+<div align="center">
+  <p>
+    <img src="docs/keys/theme_emerald.png" alt="Emerald Theme" width="135">&nbsp;&nbsp;
+    <img src="docs/keys/theme_blue.png" alt="Blue Theme" width="135">&nbsp;&nbsp;
+    <img src="docs/keys/theme_amber.png" alt="Amber Theme" width="135">&nbsp;&nbsp;
+    <img src="docs/keys/theme_rose.png" alt="Rose Theme" width="135">&nbsp;&nbsp;
+    <img src="docs/keys/theme_purple.png" alt="Purple Theme" width="135">
+  </p>
+</div>
 
 - **10 Dual-Tone Color Themes** — Classic, Stealth Dark, Pure White, Ocean Blue, Emerald Green, Deep Purple, Rose Quartz, Amber Orange, Citrus, Indigo.
 - **Custom Dual-Color RGB Picker** — Independently customize colors for modifier keys and alphanumeric character keys.
