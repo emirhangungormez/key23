@@ -42,6 +42,37 @@
 - **Real-time key display** — Every keystroke appears on screen the moment it is pressed, with smooth pop and fade-out animations.
 - **Iconic Pod Chassis & 3D Keycaps** — Features the iconic rounded dark pod chassis with vibrant 3D keycaps floating gracefully above your screen.
 - **5 Authentic 3D Keycap Styles** — PBT Mechanical, Apple Modern, Retro Beige, Minimal Pill, and M0116 Vintage with mathematical vector depth and lighting.
+
+<div align="center">
+  <table>
+    <thead>
+      <tr>
+        <th align="center">PBT Mechanical</th>
+        <th align="center">Apple Modern</th>
+        <th align="center">Retro Vintage</th>
+        <th align="center">Minimal Pill</th>
+        <th align="center">M0116 Classic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td align="center"><img src="docs/keys/style_pbt.png" width="115" alt="PBT Mechanical"></td>
+        <td align="center"><img src="docs/keys/style_apple.png" width="100" alt="Apple Modern"></td>
+        <td align="center"><img src="docs/keys/style_retro.png" width="115" alt="Retro Vintage"></td>
+        <td align="center"><img src="docs/keys/style_minimal.png" width="95" alt="Minimal Pill"></td>
+        <td align="center"><img src="docs/keys/style_m0116.png" width="105" alt="M0116 Classic"></td>
+      </tr>
+      <tr>
+        <td align="center"><sub>Deep sculpted dish</sub></td>
+        <td align="center"><sub>Flat rounded glass</sub></td>
+        <td align="center"><sub>Vintage mechanical</sub></td>
+        <td align="center"><sub>Clean minimal pill</sub></td>
+        <td align="center"><sub>Apple M0116 classic</sub></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 - **Modifier Combination Evaluation** — Automatically resolves and displays combination results (e.g. `Ctrl` + `C` = `COPY`, `Shift` + `4` = `+`).
 - **Shortcuts-Only Mode** — Filter out plain typing to only showcase hotkeys and shortcuts involving modifiers (`Ctrl`, `Shift`, `Alt`, `Win`).
 - **Turkish QWERTY & Multi-Layout Support** — Resolves native Windows keyboard layouts using `ToUnicodeEx` for accurate `AltGr` and `Shift` characters.
