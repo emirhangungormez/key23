@@ -29,7 +29,7 @@
 ### Keyboard
 
 <div align="center">
-  <img src="docs/screenshots/keyboard_showcase.png" alt="Key23 Keycap HUD" width="85%">
+  <img src="docs/screenshots/keyboard_showcase.gif" alt="Key23 Keycap HUD" width="85%">
 </div>
 
 - **Real-time key display** — Every keystroke appears on screen the moment it is pressed, with smooth pop and fade-out animations.
