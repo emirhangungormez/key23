@@ -29,8 +29,7 @@
 ### Keyboard
 
 <div align="center">
-  <img src="docs/screenshots/keyboard_showcase.png" alt="Key23 Keycap HUD" width="85%"><br/><br/>
-  <img src="docs/screenshots/multi_keys_showcase.png" alt="Key23 Multi-Key Shortcut" width="85%">
+  <img src="docs/screenshots/keyboard_showcase.png" alt="Key23 Keycap HUD" width="85%">
 </div>
 
 - **Real-time key display** — Every keystroke appears on screen the moment it is pressed, with smooth pop and fade-out animations.
@@ -56,10 +55,6 @@
 ---
 
 ### Settings & Theming
-
-<div align="center">
-  <img src="docs/screenshots/settings_window.png" alt="Key23 Settings Window" width="390">
-</div>
 
 - **10 Dual-Tone Color Themes** — Classic, Stealth Dark, Pure White, Ocean Blue, Emerald Green, Deep Purple, Rose Quartz, Amber Orange, Citrus, Indigo.
 - **Custom Dual-Color RGB Picker** — Independently customize colors for modifier keys and alphanumeric character keys.
