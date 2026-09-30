@@ -12,7 +12,7 @@ import {
 
 function loadSettings(): AppSettings {
   try {
-    const raw = localStorage.getItem('winkeyty_settings');
+    const raw = localStorage.getItem('key23_settings') || localStorage.getItem('winkeyty_settings');
     if (raw) return { ...defaultSettings, ...JSON.parse(raw) };
   } catch {}
   return defaultSettings;
@@ -39,8 +39,8 @@ app.className = 'w-full h-full bg-transparent flex items-center justify-center p
 app.style.cssText = 'width: 100vw; height: 100vh; background: transparent !important; display: flex; align-items: center; justify-content: center; overflow: visible;';
 
 app.innerHTML = `
-  <div id="key-pod" class="transition-opacity duration-150 opacity-0 pointer-events-none" style="background: transparent !important; border: none !important; box-shadow: none !important; display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: center !important; transform-origin: center center;">
-    <div id="key-cluster" style="background: transparent !important; border: none !important; box-shadow: none !important; display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; white-space: nowrap !important; align-items: center !important; justify-content: center !important; gap: 8px;">
+  <div id="key-pod" class="transition-opacity duration-150 opacity-0 pointer-events-none" style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: center !important; transform-origin: center center;">
+    <div id="key-cluster" style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; white-space: nowrap !important; align-items: center !important; justify-content: center !important; gap: 8px;">
     </div>
   </div>
 `;
@@ -71,20 +71,42 @@ function getMaxFittingKeys(): number {
 }
 
 function applyClusterStyle() {
-  cluster.style.background = 'transparent';
-  cluster.style.border = 'none';
-  cluster.style.boxShadow = 'none';
-  cluster.style.borderRadius = '0';
-  cluster.style.padding = '0';
-  cluster.style.gap = '8px';
+  const isBgEnabled = currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none';
+  if (isBgEnabled) {
+    const podStyle = getPodContainerStyle(
+      currentSettings.style,
+      currentSettings.theme,
+      {
+        ...currentSettings,
+        podBgMode: currentSettings.podBgMode === 'none' ? 'auto' : currentSettings.podBgMode,
+      }
+    );
+    cluster.style.background = podStyle.background;
+    cluster.style.border = podStyle.border;
+    cluster.style.borderRadius = podStyle.borderRadius;
+    cluster.style.padding = podStyle.padding;
+    cluster.style.boxShadow = podStyle.boxShadow;
+    cluster.style.gap = podStyle.gap || '8px';
+    if (podStyle.backdropFilter) {
+      (cluster.style as any).backdropFilter = podStyle.backdropFilter;
+      (cluster.style as any).webkitBackdropFilter = podStyle.backdropFilter;
+    }
+  } else {
+    cluster.style.background = 'transparent';
+    cluster.style.border = 'none';
+    cluster.style.boxShadow = 'none';
+    cluster.style.borderRadius = '0';
+    cluster.style.padding = '0';
+    cluster.style.gap = '8px';
+    (cluster.style as any).backdropFilter = 'none';
+    (cluster.style as any).webkitBackdropFilter = 'none';
+  }
   cluster.style.display = 'flex';
   cluster.style.flexDirection = 'row';
   cluster.style.flexWrap = 'nowrap';
   cluster.style.whiteSpace = 'nowrap';
   cluster.style.alignItems = 'center';
   cluster.style.justifyContent = 'center';
-  (cluster.style as any).backdropFilter = 'none';
-  (cluster.style as any).webkitBackdropFilter = 'none';
 }
 
 applyClusterStyle();

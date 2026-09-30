@@ -6,19 +6,20 @@ import {
   type KeycapTheme,
   renderKeycap,
   setCustomDualColorTheme,
+  getPodContainerStyle,
 } from './keycap';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 
 function loadSettings(): AppSettings {
   try {
-    const raw = localStorage.getItem('winkeyty_settings');
+    const raw = localStorage.getItem('key23_settings') || localStorage.getItem('winkeyty_settings');
     if (raw) return { ...defaultSettings, ...JSON.parse(raw) };
   } catch {}
   return defaultSettings;
 }
 
 function saveSettings(settings: AppSettings) {
-  localStorage.setItem('winkeyty_settings', JSON.stringify(settings));
+  localStorage.setItem('key23_settings', JSON.stringify(settings));
   if ((window as any).__TAURI__) {
     try {
       (window as any).__TAURI__.core.invoke('sync_settings', { settings });
@@ -330,8 +331,15 @@ function renderApp() {
           </div>
         </div>
 
-        <!-- Options: İmleç Yanı Fare & Kısayollar -->
+        <!-- Options: Tuş Arka Planı, İmleç Yanı Fare & Kısayollar -->
         <div class="pt-0.5 space-y-1.5 pb-1">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] text-zinc-300 font-medium">Tuş Arka Planı (Kapsül)</span>
+            <button id="toggle-bg" class="cap-toggle ${currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none' ? 'is-active' : ''}" role="switch">
+              <span class="cap-toggle-thumb"></span>
+            </button>
+          </div>
+
           <div class="flex items-center justify-between">
             <span class="text-[11px] text-zinc-300 font-medium">İmleç Yanı Fare Simgesi</span>
             <button id="toggle-pointer" class="cap-toggle ${currentSettings.pointerIconEnabled ? 'is-active' : ''}" role="switch">
@@ -373,16 +381,35 @@ function updatePreviewArea() {
   };
   const effectiveScale = scaleMap[style] || 0.72;
 
-  pod.style.background = 'transparent';
-  pod.style.border = 'none';
-  pod.style.borderRadius = '0';
-  pod.style.padding = '0';
-  pod.style.gap = '8px';
-  pod.style.boxShadow = 'none';
+  const isBgEnabled = currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none';
+  if (isBgEnabled) {
+    const podStyle = getPodContainerStyle(style, theme, {
+      ...currentSettings,
+      podBgMode: currentSettings.podBgMode === 'none' ? 'auto' : currentSettings.podBgMode,
+    });
+    pod.style.background = podStyle.background;
+    pod.style.border = podStyle.border;
+    pod.style.borderRadius = podStyle.borderRadius;
+    pod.style.padding = podStyle.padding;
+    pod.style.boxShadow = podStyle.boxShadow;
+    pod.style.gap = podStyle.gap || '8px';
+    if (podStyle.backdropFilter) {
+      (pod.style as any).backdropFilter = podStyle.backdropFilter;
+      (pod.style as any).webkitBackdropFilter = podStyle.backdropFilter;
+    }
+  } else {
+    pod.style.background = 'transparent';
+    pod.style.border = 'none';
+    pod.style.borderRadius = '0';
+    pod.style.padding = '0';
+    pod.style.boxShadow = 'none';
+    pod.style.gap = '8px';
+    (pod.style as any).backdropFilter = 'none';
+    (pod.style as any).webkitBackdropFilter = 'none';
+  }
+
   pod.style.transform = `scale(${effectiveScale})`;
   pod.style.transformOrigin = 'center center';
-  (pod.style as any).backdropFilter = 'none';
-  (pod.style as any).webkitBackdropFilter = 'none';
 
   // EXACTLY TWO KEYS: Caps Lock + K (Büyük, net ve ortalı)
   pod.innerHTML = `
@@ -586,7 +613,15 @@ function attachEventListeners() {
     renderApp();
   });
 
-  // Pointer and Shortcuts Toggles
+  // Background, Pointer and Shortcuts Toggles
+  document.getElementById('toggle-bg')?.addEventListener('click', () => {
+    const currentActive = currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none';
+    currentSettings.showKeyBackground = !currentActive;
+    currentSettings.podBgMode = currentSettings.showKeyBackground ? 'auto' : 'none';
+    saveSettings(currentSettings);
+    renderApp();
+  });
+
   document.getElementById('toggle-pointer')?.addEventListener('click', () => {
     currentSettings.pointerIconEnabled = !currentSettings.pointerIconEnabled;
     saveSettings(currentSettings);

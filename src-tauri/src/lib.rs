@@ -1,8 +1,6 @@
 mod hook;
 mod tray;
 
-use std::fs::OpenOptions;
-use std::io::Write;
 use std::sync::atomic::{AtomicBool, Ordering};
 use tauri::{AppHandle, Emitter, Manager, WebviewUrl, WebviewWindowBuilder};
 
@@ -14,15 +12,9 @@ pub fn request_exit(app: &AppHandle) {
     app.exit(0);
 }
 
-fn log(msg: &str) {
-    if let Ok(mut f) = OpenOptions::new()
-        .create(true)
-        .append(true)
-        .open("C:\\Users\\emirhan\\Desktop\\WinKeyty\\winkeyty_runtime.log")
-    {
-        let _ = writeln!(f, "[{:?}] {}", std::time::SystemTime::now(), msg);
-        let _ = f.flush();
-    }
+fn log(_msg: &str) {
+    #[cfg(debug_assertions)]
+    println!("[{:?}] {}", std::time::SystemTime::now(), _msg);
 }
 
 #[tauri::command]
@@ -275,7 +267,7 @@ fn sync_settings(app: AppHandle, settings: serde_json::Value) -> Result<(), Stri
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    log("STEP 1: Starting WinKeyty engine...");
+    log("STEP 1: Starting Key23 engine...");
 
     log("STEP 2: Generating Tauri context...");
     let context = tauri::generate_context!();
@@ -310,7 +302,7 @@ pub fn run() {
             // Create overlay window (Floating HUD) programmatically after main webview is initialized
             log("Creating overlay HUD window programmatically...");
             match WebviewWindowBuilder::new(app, "overlay", WebviewUrl::App("overlay.html".into()))
-                .title("WinKeyty HUD")
+                .title("Key23 HUD")
                 .inner_size(680.0, 180.0)
                 .resizable(false)
                 .decorations(false)

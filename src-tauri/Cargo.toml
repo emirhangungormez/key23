@@ -1,12 +1,12 @@
 [package]
-name = "winkeyty"
+name = "key23"
 version = "0.1.0"
-description = "WinKeyty Keyboard and Mouse Visualizer in Rust + Tauri"
+description = "Key23 Keyboard and Mouse Visualizer in Rust + Tauri"
 authors = ["Emirhan"]
 edition = "2021"
 
 [lib]
-name = "winkeyty_lib"
+name = "key23_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

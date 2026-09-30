@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" width="920" height="400">
+  <defs>
+    <linearGradient id="bgBox" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1117"/>
+      <stop offset="100%" stop-color="#141822"/>
+    </linearGradient>
+
+    <!-- PBT Red & Gold Gradients -->
+    <linearGradient id="pbtModTop2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B63"/>
+      <stop offset="100%" stop-color="#E0302C"/>
+    </linearGradient>
+    <linearGradient id="pbtModDish2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF5A52"/>
+      <stop offset="100%" stop-color="#D92824"/>
+    </linearGradient>
+    <linearGradient id="pbtAlphaTop2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFD043"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="pbtAlphaDish2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFC226"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+
+    <filter id="podShadow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="920" height="400" rx="16" fill="url(#bgBox)"/>
+
+  <!-- Title -->
+  <text x="460" y="44" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="22" font-weight="700" text-anchor="middle">
+    Tuş Arka Planı (Pod / Capsule) — Toggle Ayarı
+  </text>
+  <text x="460" y="70" fill="#94a3b8" font-family="-apple-system, sans-serif" font-size="13" text-anchor="middle">
+    Kullanıcı tercihine göre tuşların arkasındaki kapsül pod arkaplanını anında açıp kapatabilirsiniz.
+  </text>
+
+  <!-- =================================================================== -->
+  <!-- OPTION 1: ARKA PLAN AÇIK (POD / CAPSULE CONTAINER AKTİF)            -->
+  <!-- =================================================================== -->
+  <g transform="translate(60, 110)">
+    <!-- Section Border Box -->
+    <rect x="0" y="0" width="380" height="240" rx="16" fill="#161a24" stroke="rgba(59,130,246,0.3)" stroke-width="1.5"/>
+
+    <!-- Status Header -->
+    <g transform="translate(20, 28)">
+      <circle cx="6" cy="6" r="6" fill="#10b981"/>
+      <text x="22" y="10" fill="#10b981" font-family="-apple-system, sans-serif" font-size="13" font-weight="700">1. Kapsül Pod Açık (Varsayılan)</text>
+      <text x="22" y="28" fill="#64748b" font-family="-apple-system, sans-serif" font-size="11">Buzlu cam / koyu şasi podu tuşları sarar</text>
+    </g>
+
+    <!-- Visualizer with Pod Background -->
+    <g transform="translate(48, 110)">
+      <!-- The Pod Capsule -->
+      <rect x="-14" y="-12" width="310" height="106" rx="22" fill="rgba(23, 27, 38, 0.95)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5" filter="url(#podShadow2)"/>
+
+      <!-- Key: CTRL -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="94" height="82" rx="11" fill="#8A1C18"/>
+        <rect x="2" y="2" width="90" height="76" rx="9" fill="url(#pbtModTop2)"/>
+        <rect x="7" y="5" width="80" height="66" rx="6" fill="url(#pbtModDish2)" stroke="#FF857E" stroke-opacity="0.3"/>
+        <text x="47" y="44" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="15" font-weight="700" text-anchor="middle">CTRL</text>
+      </g>
+
+      <!-- Key: C -->
+      <g transform="translate(106, 0)">
+        <rect x="0" y="0" width="82" height="82" rx="11" fill="#995200"/>
+        <rect x="2" y="2" width="78" height="76" rx="9" fill="url(#pbtAlphaTop2)"/>
+        <rect x="7" y="5" width="68" height="66" rx="6" fill="url(#pbtAlphaDish2)" stroke="#FFE082" stroke-opacity="0.4"/>
+        <text x="41" y="46" fill="#18181b" font-family="-apple-system, sans-serif" font-size="20" font-weight="800" text-anchor="middle">C</text>
+      </g>
+
+      <!-- Key: Kopyala -->
+      <g transform="translate(200, 20)">
+        <text x="0" y="28" fill="#64748b" font-family="-apple-system, sans-serif" font-size="16" font-weight="bold">=</text>
+        <rect x="18" y="4" width="56" height="34" rx="8" fill="#1e293b" stroke="#3b82f6"/>
+        <text x="46" y="26" fill="#93c5fd" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" text-anchor="middle">COPY</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- OPTION 2: ARKA PLAN KAPALI (TAM ŞEFFAF / FLOATING KEYS ONLY)        -->
+  <!-- =================================================================== -->
+  <g transform="translate(480, 110)">
+    <!-- Section Border Box -->
+    <rect x="0" y="0" width="380" height="240" rx="16" fill="#161a24" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+
+    <!-- Status Header -->
+    <g transform="translate(20, 28)">
+      <circle cx="6" cy="6" r="6" fill="#94a3b8"/>
+      <text x="22" y="10" fill="#cbd5e1" font-family="-apple-system, sans-serif" font-size="13" font-weight="700">2. Kapsül Pod Kapalı (Saf Tuşlar)</text>
+      <text x="22" y="28" fill="#64748b" font-family="-apple-system, sans-serif" font-size="11">Tuşlar ekranda kutusuz, doğrudan yüzer</text>
+    </g>
+
+    <!-- Visualizer without Pod Background (Pure floating) -->
+    <g transform="translate(48, 110)">
+      <!-- Notice: NO POD RECTANGLE! Directly Floating Keycaps -->
+
+      <!-- Key: CTRL -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="94" height="82" rx="11" fill="#8A1C18"/>
+        <rect x="2" y="2" width="90" height="76" rx="9" fill="url(#pbtModTop2)"/>
+        <rect x="7" y="5" width="80" height="66" rx="6" fill="url(#pbtModDish2)" stroke="#FF857E" stroke-opacity="0.3"/>
+        <text x="47" y="44" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="15" font-weight="700" text-anchor="middle">CTRL</text>
+      </g>
+
+      <!-- Key: V -->
+      <g transform="translate(106, 0)">
+        <rect x="0" y="0" width="82" height="82" rx="11" fill="#995200"/>
+        <rect x="2" y="2" width="78" height="76" rx="9" fill="url(#pbtAlphaTop2)"/>
+        <rect x="7" y="5" width="68" height="66" rx="6" fill="url(#pbtAlphaDish2)" stroke="#FFE082" stroke-opacity="0.4"/>
+        <text x="41" y="46" fill="#18181b" font-family="-apple-system, sans-serif" font-size="20" font-weight="800" text-anchor="middle">V</text>
+      </g>
+
+      <!-- Key: Yapıştır -->
+      <g transform="translate(200, 20)">
+        <text x="0" y="28" fill="#64748b" font-family="-apple-system, sans-serif" font-size="16" font-weight="bold">=</text>
+        <rect x="18" y="4" width="62" height="34" rx="8" fill="#1e293b" stroke="#10b981"/>
+        <text x="49" y="26" fill="#6ee7b7" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" text-anchor="middle">PASTE</text>
+      </g>
+    </g>
+  </g>
+
+</svg>

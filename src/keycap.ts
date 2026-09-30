@@ -45,6 +45,7 @@ export interface AppSettings {
   customY?: number;
   customWidth?: number;
   customHeight?: number;
+  showKeyBackground: boolean;
   podBgMode: PodBgMode;
   podBgCustomColor: string;
   podBgOpacity: number;
@@ -56,15 +57,16 @@ export const defaultSettings: AppSettings = {
   onlyShortcuts: false,
   showCombinationResult: true,
   pointerIconEnabled: true,
+  showKeyBackground: true,
   style: 'pbt',
   theme: 'classic',
   customColor: '#3b82f6',
   scale: 1.0,
   fadeDelay: 1.5,
   position: 'bottom_center',
-  podBgMode: 'none',
+  podBgMode: 'auto',
   podBgCustomColor: '#171717',
-  podBgOpacity: 0,
+  podBgOpacity: 92,
   keyboardLayout: 'auto',
 };
 

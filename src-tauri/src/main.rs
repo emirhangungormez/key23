@@ -10,12 +10,9 @@ use windows::Win32::System::Threading::{
 };
 
 fn main() {
-    let log_msg = |msg: &str| {
-        use std::io::Write;
-        if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open("C:\\Users\\emirhan\\Desktop\\WinKeyty\\winkeyty_runtime.log") {
-            let _ = writeln!(f, "[{:?}] MAIN: {}", std::time::SystemTime::now(), msg);
-            let _ = f.flush();
-        }
+    let log_msg = |_msg: &str| {
+        #[cfg(debug_assertions)]
+        println!("[{:?}] MAIN: {}", std::time::SystemTime::now(), _msg);
     };
     log_msg("Entering main()");
 
@@ -59,8 +56,11 @@ fn main() {
         };
         let msg = format!("FATAL PANIC:\nMessage: {}\nLocation: {:?}\n", payload, info.location());
         let full_info = format!("Full Panic Info: {:?}\n", info);
-        let _ = std::fs::write("C:\\Users\\emirhan\\Desktop\\WinKeyty\\panic_error.log", format!("{}\n{}", msg, full_info));
+        if let Ok(mut p) = std::env::current_exe() {
+            p.pop();
+            let _ = std::fs::write(p.join("panic_error.log"), format!("{}\n{}", msg, full_info));
+        }
     }));
 
-    winkeyty_lib::run();
+    key23_lib::run();
 }

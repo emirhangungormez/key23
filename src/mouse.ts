@@ -12,7 +12,7 @@ let wheelTimer: any = null;
 // Settings state
 let isEnabled = true;
 try {
-  const saved = localStorage.getItem('winkeyty_settings') || localStorage.getItem('key23_settings');
+  const saved = localStorage.getItem('key23_settings') || localStorage.getItem('winkeyty_settings');
   if (saved) {
     const parsed = JSON.parse(saved);
     if (parsed.pointerIconEnabled === false) {

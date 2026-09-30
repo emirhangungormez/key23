@@ -9,7 +9,7 @@ import {
 
 function loadSettings(): AppSettings {
   try {
-    const raw = localStorage.getItem('winkeyty_settings');
+    const raw = localStorage.getItem('key23_settings') || localStorage.getItem('winkeyty_settings');
     if (raw) return { ...defaultSettings, ...JSON.parse(raw) };
   } catch {}
   return defaultSettings;

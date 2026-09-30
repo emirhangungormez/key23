@@ -1,0 +1,257 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 520" width="430" height="520">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="settBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0e0e12"/>
+      <stop offset="100%" stop-color="#121218"/>
+    </linearGradient>
+
+    <!-- Keycap Gradients: Mod (Caps Lock - Red PBT) -->
+    <linearGradient id="pbtCapsTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B63"/>
+      <stop offset="100%" stop-color="#E0302C"/>
+    </linearGradient>
+    <linearGradient id="pbtCapsDish" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF5A52"/>
+      <stop offset="100%" stop-color="#D92824"/>
+    </linearGradient>
+
+    <!-- Keycap Gradients: Alpha (K - Gold PBT) -->
+    <linearGradient id="pbtKTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFD043"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="pbtKDish" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFC226"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+
+    <filter id="winShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <filter id="previewPodShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Window Container with rounded top and subtle border -->
+  <rect width="430" height="520" rx="10" ry="10" fill="url(#settBg)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+  <!-- =================================================================== -->
+  <!-- 1. CAPTION BAR                                                      -->
+  <!-- =================================================================== -->
+  <rect x="0" y="0" width="430" height="38" rx="10" ry="10" fill="#121216"/>
+  <!-- square off bottom corners of caption bar -->
+  <rect x="0" y="26" width="430" height="12" fill="#121216"/>
+
+  <text x="14" y="24" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" letter-spacing="0.5">Key23</text>
+
+  <!-- Minimize & Close Buttons -->
+  <g transform="translate(376, 8)">
+    <rect x="0" y="2" width="20" height="20" rx="4" fill="rgba(255,255,255,0.06)"/>
+    <text x="10" y="15" fill="#a1a1aa" font-family="-apple-system, sans-serif" font-size="11" text-anchor="middle">─</text>
+    <rect x="24" y="2" width="20" height="20" rx="4" fill="rgba(255,255,255,0.06)"/>
+    <text x="34" y="16" fill="#a1a1aa" font-family="-apple-system, sans-serif" font-size="11" text-anchor="middle">✕</text>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- 2. PREVIEW SECTION (Preview Card + HUD & Custom Color Buttons)     -->
+  <!-- =================================================================== -->
+  <g transform="translate(12, 48)">
+    <!-- Preview Box (Left) -->
+    <rect x="0" y="0" width="276" height="96" rx="12" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+    
+    <!-- Preview Pod Container (The Pod Capsule!) -->
+    <g transform="translate(34, 14)">
+      <rect x="-8" y="-6" width="224" height="78" rx="16" fill="rgba(23, 27, 38, 0.92)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2" filter="url(#previewPodShadow)"/>
+
+      <!-- Caps Lock Key -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="112" height="66" rx="9" fill="#8A1C18"/>
+        <rect x="2" y="2" width="108" height="60" rx="7" fill="url(#pbtCapsTop)"/>
+        <rect x="6" y="4" width="98" height="50" rx="5" fill="url(#pbtCapsDish)" stroke="#FF857E" stroke-opacity="0.3"/>
+        <text x="54" y="34" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="12" font-weight="700" text-anchor="middle">CAPS LOCK</text>
+      </g>
+
+      <!-- K Key -->
+      <g transform="translate(122, 0)">
+        <rect x="0" y="0" width="86" height="66" rx="9" fill="#995200"/>
+        <rect x="2" y="2" width="82" height="60" rx="7" fill="url(#pbtKTop)"/>
+        <rect x="6" y="4" width="72" height="50" rx="5" fill="url(#pbtKDish)" stroke="#FFE082" stroke-opacity="0.4"/>
+        <text x="43" y="36" fill="#18181b" font-family="-apple-system, sans-serif" font-size="17" font-weight="800" text-anchor="middle">K</text>
+      </g>
+    </g>
+
+    <!-- Right Controls: HUD Toggle + Custom Color Button -->
+    <g transform="translate(286, 0)">
+      <!-- HUD Toggle Card -->
+      <rect x="0" y="0" width="120" height="44" rx="10" fill="#16161c" stroke="rgba(255,255,255,0.08)"/>
+      <text x="10" y="18" fill="#e4e4e7" font-family="-apple-system, sans-serif" font-size="10" font-weight="600">Klavye HUD</text>
+      <text x="10" y="32" fill="#60a5fa" font-family="-apple-system, sans-serif" font-size="9" font-weight="500">Açık</text>
+
+      <!-- Toggle Switch: Active -->
+      <rect x="80" y="14" width="30" height="16" rx="8" fill="#2563eb"/>
+      <circle cx="98" cy="22" r="6" fill="#ffffff"/>
+
+      <!-- Custom Color Card Button -->
+      <g transform="translate(0, 50)">
+        <rect x="0" y="0" width="120" height="46" rx="10" fill="#16161c" stroke="rgba(255,255,255,0.08)"/>
+        <circle cx="54" cy="18" r="7" fill="#FF4740" stroke="rgba(255,255,255,0.2)"/>
+        <circle cx="66" cy="18" r="7" fill="#F59E0B" stroke="rgba(255,255,255,0.2)"/>
+        <text x="60" y="36" fill="#e4e4e7" font-family="-apple-system, sans-serif" font-size="9" font-weight="500" text-anchor="middle">Özel Renk</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- 3. COLOR THEMES GALLERY                                             -->
+  <!-- =================================================================== -->
+  <g transform="translate(12, 154)">
+    <text x="0" y="10" fill="#a1a1aa" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" letter-spacing="1">RENK TEMALARI</text>
+
+    <!-- Grid 1: 5 Themes -->
+    <g transform="translate(0, 18)">
+      <!-- Classic (Selected Active) -->
+      <rect x="0" y="0" width="76" height="26" rx="6" fill="#1d2433" stroke="#3b82f6" stroke-width="1.2"/>
+      <circle cx="14" cy="13" r="5" fill="#FF4740"/>
+      <text x="24" y="16" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="9" font-weight="600">Classic</text>
+
+      <!-- Black -->
+      <rect x="82" y="0" width="76" height="26" rx="6" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+      <circle cx="96" cy="13" r="5" fill="#27272a"/>
+      <text x="106" y="16" fill="#d4d4d8" font-family="-apple-system, sans-serif" font-size="9">Black</text>
+
+      <!-- Blue -->
+      <rect x="164" y="0" width="76" height="26" rx="6" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+      <circle cx="178" cy="13" r="5" fill="#2563eb"/>
+      <text x="188" y="16" fill="#d4d4d8" font-family="-apple-system, sans-serif" font-size="9">Blue</text>
+
+      <!-- White -->
+      <rect x="246" y="0" width="76" height="26" rx="6" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+      <circle cx="260" cy="13" r="5" fill="#f4f4f5"/>
+      <text x="270" y="16" fill="#d4d4d8" font-family="-apple-system, sans-serif" font-size="9">White</text>
+
+      <!-- Emerald -->
+      <rect x="328" y="0" width="78" height="26" rx="6" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+      <circle cx="342" cy="13" r="5" fill="#059669"/>
+      <text x="352" y="16" fill="#d4d4d8" font-family="-apple-system, sans-serif" font-size="9">Emerald</text>
+    </g>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- 4. KEYCAP STYLE SELECTOR                                            -->
+  <!-- =================================================================== -->
+  <g transform="translate(12, 218)">
+    <text x="0" y="10" fill="#a1a1aa" font-family="-apple-system, sans-serif" font-size="9" font-weight="700" letter-spacing="1">KLAVYE STİLİ</text>
+
+    <!-- 5 Style Cards -->
+    <g transform="translate(0, 18)">
+      <!-- 1. PBT (Selected) -->
+      <rect x="0" y="0" width="76" height="54" rx="8" fill="#1d2433" stroke="#3b82f6" stroke-width="1.2"/>
+      <rect x="24" y="8" width="28" height="24" rx="4" fill="#E0302C"/>
+      <rect x="27" y="10" width="22" height="18" rx="3" fill="#FF5A52"/>
+      <text x="38" y="23" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">K</text>
+      <text x="38" y="44" fill="#93c5fd" font-family="-apple-system, sans-serif" font-size="9" font-weight="600" text-anchor="middle">PBT</text>
+
+      <!-- 2. Apple -->
+      <rect x="82" y="0" width="76" height="54" rx="8" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="106" y="8" width="28" height="24" rx="4" fill="#27272a" stroke="#3f3f46"/>
+      <text x="120" y="24" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">K</text>
+      <text x="120" y="44" fill="#d4d4d8" font-family="-apple-system, sans-serif" font-size="9" text-anchor="middle">Apple</text>
+
+      <!-- 3. Retro -->
+      <rect x="164" y="0" width="76" height="54" rx="8" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="188" y="8" width="28" height="24" rx="4" fill="#D3CBBB"/>
+      <text x="202" y="24" fill="#3f3f46" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">K</text>
+      <text x="202" y="44" fill="#d4d4d8" font-family="-apple-system, sans-serif" font-size="9" text-anchor="middle">Retro</text>
+
+      <!-- 4. Minimal -->
+      <rect x="246" y="0" width="76" height="54" rx="8" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="274" y="8" width="22" height="22" rx="11" fill="#27272a" stroke="rgba(255,255,255,0.2)"/>
+      <text x="285" y="23" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">K</text>
+      <text x="285" y="44" fill="#d4d4d8" font-family="-apple-system, sans-serif" font-size="9" text-anchor="middle">Minimal</text>
+
+      <!-- 5. M0116 -->
+      <rect x="328" y="0" width="78" height="54" rx="8" fill="#16161c" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="354" y="8" width="26" height="24" rx="4" fill="#C9C2B1"/>
+      <text x="362" y="24" fill="#3f3f46" font-family="-apple-system, sans-serif" font-style="italic" font-size="10" font-weight="bold" text-anchor="middle">K</text>
+      <text x="367" y="44" fill="#d4d4d8" font-family="-apple-system, sans-serif" font-size="9" text-anchor="middle">M0116</text>
+    </g>
+  </g>
+
+  <!-- =================================================================== -->
+  <!-- 5. CONTROLS & TOGGLES (Including the new Tuş Arka Planı Toggle!)    -->
+  <!-- =================================================================== -->
+  <g transform="translate(12, 310)">
+    <!-- Container Card -->
+    <rect x="0" y="0" width="406" height="196" rx="10" fill="#14141a" stroke="rgba(255,255,255,0.08)"/>
+
+    <!-- Row 1: Ekran Konumu -->
+    <g transform="translate(12, 14)">
+      <text x="0" y="12" fill="#e4e4e7" font-family="-apple-system, sans-serif" font-size="11" font-weight="500">Ekran Konumu</text>
+      <text x="0" y="24" fill="#71717a" font-family="-apple-system, sans-serif" font-size="9">Varsayılan (Alt Orta)</text>
+
+      <g transform="translate(230, 2)">
+        <rect x="0" y="0" width="56" height="22" rx="6" fill="#1c1c24" stroke="rgba(255,255,255,0.08)"/>
+        <text x="28" y="14" fill="#a1a1aa" font-family="-apple-system, sans-serif" font-size="9" text-anchor="middle">Sıfırla</text>
+
+        <rect x="62" y="0" width="86" height="22" rx="6" fill="#2563eb"/>
+        <text x="105" y="14" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="9" font-weight="600" text-anchor="middle">Konum Ayarla</text>
+      </g>
+    </g>
+
+    <!-- Divider -->
+    <line x1="12" y1="52" x2="394" y2="52" stroke="rgba(255,255,255,0.05)"/>
+
+    <!-- Row 2: Sliders (Boyut & Kalma Süresi) -->
+    <g transform="translate(12, 64)">
+      <!-- Slider 1: Boyut -->
+      <text x="0" y="10" fill="#a1a1aa" font-family="-apple-system, sans-serif" font-size="9">Boyut</text>
+      <text x="170" y="10" fill="#60a5fa" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" text-anchor="end">1.0x</text>
+      <rect x="0" y="16" width="170" height="4" rx="2" fill="#27272a"/>
+      <rect x="0" y="16" width="85" height="4" rx="2" fill="#3b82f6"/>
+      <circle cx="85" cy="18" r="6" fill="#3b82f6"/>
+
+      <!-- Slider 2: Süre -->
+      <g transform="translate(210, 0)">
+        <text x="0" y="10" fill="#a1a1aa" font-family="-apple-system, sans-serif" font-size="9">Süre</text>
+        <text x="170" y="10" fill="#60a5fa" font-family="-apple-system, sans-serif" font-size="9" font-weight="bold" text-anchor="end">1.5s</text>
+        <rect x="0" y="16" width="170" height="4" rx="2" fill="#27272a"/>
+        <rect x="0" y="16" width="102" height="4" rx="2" fill="#3b82f6"/>
+        <circle cx="102" cy="18" r="6" fill="#3b82f6"/>
+      </g>
+    </g>
+
+    <!-- Divider -->
+    <line x1="12" y1="102" x2="394" y2="102" stroke="rgba(255,255,255,0.05)"/>
+
+    <!-- Row 3: THE TOGGLE CONTROLS (Including Tuş Arka Planı!) -->
+    <g transform="translate(12, 114)">
+      
+      <!-- TOGGLE 1: TUŞ ARKA PLANI (KAPSÜL) -> ACTIVE BLUE! -->
+      <g transform="translate(0, 0)">
+        <text x="0" y="14" fill="#e4e4e7" font-family="-apple-system, sans-serif" font-size="11" font-weight="600">Tuş Arka Planı (Kapsül)</text>
+        <rect x="352" y="2" width="30" height="16" rx="8" fill="#2563eb"/>
+        <circle cx="370" cy="10" r="6" fill="#ffffff"/>
+      </g>
+
+      <!-- TOGGLE 2: İMLEÇ YANI FARE SİMGESİ -->
+      <g transform="translate(0, 26)">
+        <text x="0" y="14" fill="#e4e4e7" font-family="-apple-system, sans-serif" font-size="11" font-weight="500">İmleç Yanı Fare Simgesi</text>
+        <rect x="352" y="2" width="30" height="16" rx="8" fill="#2563eb"/>
+        <circle cx="370" cy="10" r="6" fill="#ffffff"/>
+      </g>
+
+      <!-- TOGGLE 3: YALNIZCA KISAYOLLAR -->
+      <g transform="translate(0, 52)">
+        <text x="0" y="14" fill="#a1a1aa" font-family="-apple-system, sans-serif" font-size="11" font-weight="500">Yalnızca Kısayollar</text>
+        <rect x="352" y="2" width="30" height="16" rx="8" fill="#27272a"/>
+        <circle cx="360" cy="10" r="6" fill="#71717a"/>
+      </g>
+
+    </g>
+
+  </g>
+
+</svg>
