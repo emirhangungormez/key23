@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Rust build artifacts
+src-tauri/target/
+
+# Generated / temp files
+*.ico
+*.log
+err.log
+out.log
+generate_key23_icon.cjs
+generate_keycaps.js
+generate_keycaps_v2.js
+inspect_ico.cjs
+create_key23_shortcut.ps1
+launch_explorer.ps1
+refresh_desktop_icon.ps1
+exe_icon_extracted*.png
+extracted_256.png
+lnk_icon_extracted.png
+dist-script/
+
