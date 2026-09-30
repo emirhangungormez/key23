@@ -84,14 +84,15 @@ function renderApp() {
     </div>
 
     <!-- 2. MAIN CONTENT BODY: Tight, compact, zero dead space -->
-    <div class="p-2.5 flex-1 flex flex-col justify-start gap-1.5 overflow-hidden">
+    <div class="p-2.5 flex-1 flex flex-col justify-start gap-1.5 overflow-y-auto">
       
-      <!-- ÖNİZLEME BÖLÜMÜ (Başlık kaldırıldı, kompakt & belirgin tuşlar) -->
+      <!-- ÖNİZLEME BÖLÜMÜ (Renkli Arka Plan & Doğrudan Süzülen Tuşlar) -->
       <div class="flex gap-2 items-stretch">
         
-        <!-- Sol: Mat Koyu Gri Önizleme Kutusu (Kompakt Yükseklik & Net Tuşlar) -->
-        <div class="flex-1 h-24 rounded-xl bg-[#16161c] flex items-center justify-center p-1.5 relative overflow-hidden">
-          <div id="preview-pod" class="inline-flex items-center gap-3">
+        <!-- Sol: Renkli Canlı Önizleme Kutusu (Gradient Arka Plan) -->
+        <div id="preview-box" class="flex-1 h-24 rounded-xl flex items-center justify-center p-2 relative overflow-hidden transition-all duration-300" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 50%, #0f172a 100%); box-shadow: inset 0 0 35px rgba(59, 130, 246, 0.25); border: 1.5px solid rgba(255, 255, 255, 0.16);">
+          <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.22), transparent 70%);"></div>
+          <div id="preview-pod" class="inline-flex items-center gap-2.5 relative z-10">
             <!-- Caps Lock ve K -->
           </div>
         </div>
@@ -331,15 +332,8 @@ function renderApp() {
           </div>
         </div>
 
-        <!-- Options: Tuş Arka Planı, İmleç Yanı Fare & Kısayollar -->
-        <div class="pt-0.5 space-y-1.5 pb-1">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] text-zinc-300 font-medium">Tuş Arka Planı (Kapsül)</span>
-            <button id="toggle-bg" class="cap-toggle ${currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none' ? 'is-active' : ''}" role="switch">
-              <span class="cap-toggle-thumb"></span>
-            </button>
-          </div>
-
+        <!-- Options: İmleç Yanı Fare & Kısayollar -->
+        <div class="pt-0.5 space-y-1.5 pb-0.5">
           <div class="flex items-center justify-between">
             <span class="text-[11px] text-zinc-300 font-medium">İmleç Yanı Fare Simgesi</span>
             <button id="toggle-pointer" class="cap-toggle ${currentSettings.pointerIconEnabled ? 'is-active' : ''}" role="switch">
@@ -381,32 +375,35 @@ function updatePreviewArea() {
   };
   const effectiveScale = scaleMap[style] || 0.72;
 
-  const isBgEnabled = currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none';
-  if (isBgEnabled) {
-    const podStyle = getPodContainerStyle(style, theme, {
-      ...currentSettings,
-      podBgMode: currentSettings.podBgMode === 'none' ? 'auto' : currentSettings.podBgMode,
-    });
-    pod.style.background = podStyle.background;
-    pod.style.border = podStyle.border;
-    pod.style.borderRadius = podStyle.borderRadius;
-    pod.style.padding = podStyle.padding;
-    pod.style.boxShadow = podStyle.boxShadow;
-    pod.style.gap = podStyle.gap || '8px';
-    if (podStyle.backdropFilter) {
-      (pod.style as any).backdropFilter = podStyle.backdropFilter;
-      (pod.style as any).webkitBackdropFilter = podStyle.backdropFilter;
+  // Ön izleme kutusunun arkaplanını renkli ve canlı yap
+  const previewBox = document.getElementById('preview-box');
+  if (previewBox) {
+    let c1 = '#1e3a8a';
+    let c2 = '#1e1b4b';
+    if (theme === 'blue') { c1 = '#1d4ed8'; c2 = '#172554'; }
+    else if (theme === 'green') { c1 = '#047857'; c2 = '#064e3b'; }
+    else if (theme === 'purple') { c1 = '#6d28d9'; c2 = '#3b0764'; }
+    else if (theme === 'rose') { c1 = '#be123c'; c2 = '#4c0519'; }
+    else if (theme === 'orange') { c1 = '#b45309'; c2 = '#451a03'; }
+    else if (theme === 'citrus') { c1 = '#4d7c0f'; c2 = '#1a2e05'; }
+    else if (theme === 'indigo') { c1 = '#3730a3'; c2 = '#1e1b4b'; }
+    else if (theme === 'custom') {
+      const modHex = currentSettings.customModColor || '#FF4740';
+      c1 = modHex;
+      c2 = '#0f172a';
     }
-  } else {
-    pod.style.background = 'transparent';
-    pod.style.border = 'none';
-    pod.style.borderRadius = '0';
-    pod.style.padding = '0';
-    pod.style.boxShadow = 'none';
-    pod.style.gap = '8px';
-    (pod.style as any).backdropFilter = 'none';
-    (pod.style as any).webkitBackdropFilter = 'none';
+    previewBox.style.background = `linear-gradient(135deg, ${c1} 0%, ${c2} 60%, #090d16 100%)`;
   }
+
+  // Ön izleme içindeki tuşların arkasındaki pod kutusunu kaldır (tuşlar renkli kutu üstünde doğrudan süzülür)
+  pod.style.background = 'transparent';
+  pod.style.border = 'none';
+  pod.style.borderRadius = '0';
+  pod.style.padding = '0';
+  pod.style.boxShadow = 'none';
+  pod.style.gap = '10px';
+  (pod.style as any).backdropFilter = 'none';
+  (pod.style as any).webkitBackdropFilter = 'none';
 
   pod.style.transform = `scale(${effectiveScale})`;
   pod.style.transformOrigin = 'center center';
@@ -613,15 +610,7 @@ function attachEventListeners() {
     renderApp();
   });
 
-  // Background, Pointer and Shortcuts Toggles
-  document.getElementById('toggle-bg')?.addEventListener('click', () => {
-    const currentActive = currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none';
-    currentSettings.showKeyBackground = !currentActive;
-    currentSettings.podBgMode = currentSettings.showKeyBackground ? 'auto' : 'none';
-    saveSettings(currentSettings);
-    renderApp();
-  });
-
+  // Pointer and Shortcuts Toggles
   document.getElementById('toggle-pointer')?.addEventListener('click', () => {
     currentSettings.pointerIconEnabled = !currentSettings.pointerIconEnabled;
     saveSettings(currentSettings);

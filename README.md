@@ -14,8 +14,11 @@
 <br/>
 
 <p align="center">
-  <strong>Key23</strong> is a free, open-source app that visualizes your keyboard and mouse actions in real time for Windows, making demos, presentations, tutorials, and livestreams easier to follow. It gives your audience a clear view of every shortcut, click, and input so you can communicate more effectively on screen.
+  <strong>Key23</strong> is a free, open-source app that visualizes your keyboard and mouse actions in real time for Windows, making demos, presentations, tutorials, and livestreams easier to follow.
 </p>
+
+> [!NOTE]
+> **Key23** is inspired by and built upon the excellent open-source project **[Keyty](https://github.com/keytyapp/Keyty)** (developed for macOS / iOS). If you are looking for the macOS or iOS version, please check out **[Keyty](https://github.com/keytyapp/Keyty)**. Key23 brings that same elegant input visualization experience natively to Windows with Rust and Tauri.
 
 <br/>
 
@@ -31,7 +34,7 @@
 </div>
 
 - **Real-time key display** — Every keystroke appears on screen the moment it is pressed, with smooth pop and fade-out animations.
-- **Key Background Container (Pod / Chassis) Toggle** — Switch between the iconic dark rounded pod chassis container or pure floating keycaps directly from the Settings menu.
+- **Iconic Pod Chassis & 3D Keycaps** — Features the iconic rounded dark pod chassis with vibrant 3D keycaps floating gracefully above your screen.
 - **5 Authentic 3D Keycap Styles** — PBT Mechanical, Apple Modern, Retro Beige, Minimal Pill, and M0116 Vintage with mathematical vector depth and lighting.
 - **Modifier Combination Evaluation** — Automatically resolves and displays combination results (e.g. `Ctrl` + `C` = `COPY`, `Shift` + `4` = `+`).
 - **Shortcuts-Only Mode** — Filter out plain typing to only showcase hotkeys and shortcuts involving modifiers (`Ctrl`, `Shift`, `Alt`, `Win`).
@@ -43,17 +46,12 @@
 ### Mouse
 
 <div align="center">
-  <p align="center">
-    <img src="docs/resources/ring_demo.gif" alt="Pointer Ring Demo" width="32%">&nbsp;
-    <img src="docs/resources/pointer_icon_demo.gif" alt="Pointer Icon Demo" width="32%">&nbsp;
-    <img src="docs/resources/mouse_ripples_demo.gif" alt="Mouse Ripples Demo" width="32%">
-  </p>
+  <img src="docs/resources/pointer_icon_demo.gif" alt="Pointer Icon Demo" width="220">
 </div>
 
 - **Cursor-Following Companion** — A minimal mouse pill floats gracefully alongside your cursor without blocking your work.
 - **Instant Click Highlights** — Real-time visual feedback for left, right, and middle mouse clicks.
 - **Interactive Scroll Wheel** — Directional scroll indicators appear inside the wheel slot as you scroll up or down.
-- **Concentric Click Ripples** — Smooth animated ripples highlight every click location for tutorial viewers.
 
 ---
 
