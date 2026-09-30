@@ -30,37 +30,30 @@
 
 <div align="center">
   <img src="docs/screenshots/keyboard_showcase.png" alt="Key23 Keycap HUD" width="85%">
-  <br/><br/>
-  <p>
-    <img src="docs/keys/combo_ctrl_c.png" alt="Ctrl + C" width="135">&nbsp;&nbsp;
-    <img src="docs/keys/combo_ctrl_v.png" alt="Ctrl + V" width="135">&nbsp;&nbsp;
-    <img src="docs/keys/combo_alt_tab.png" alt="Alt + Tab" width="155">&nbsp;&nbsp;
-    <img src="docs/keys/combo_win_shift_s.png" alt="Win + Shift + S" width="210">
-  </p>
 </div>
 
 - **Real-time key display** — Every keystroke appears on screen the moment it is pressed, with smooth pop and fade-out animations.
 - **Iconic Pod Chassis & 3D Keycaps** — Features the iconic rounded dark pod chassis with vibrant 3D keycaps floating gracefully above your screen.
-- **5 Authentic 3D Keycap Styles** — PBT Mechanical, Apple Modern, Retro Beige, Minimal Pill, and M0116 Vintage with mathematical vector depth and lighting.
+- **5 Authentic 3D Keycap Styles** — PBT Mechanical, Apple Modern, Retro Vintage, Minimal Pill, and M0116 Classic with mathematical vector depth and lighting.
 
 <div align="center">
   <table>
     <thead>
       <tr>
-        <th align="center">PBT Mechanical</th>
-        <th align="center">Apple Modern</th>
-        <th align="center">Retro Vintage</th>
-        <th align="center">Minimal Pill</th>
-        <th align="center">M0116 Classic</th>
+        <th align="center" width="20%">PBT Mechanical</th>
+        <th align="center" width="20%">Apple Modern</th>
+        <th align="center" width="20%">Retro Vintage</th>
+        <th align="center" width="20%">Minimal Pill</th>
+        <th align="center" width="20%">M0116 Classic</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td align="center"><img src="docs/keys/style_pbt.png" width="115" alt="PBT Mechanical"></td>
-        <td align="center"><img src="docs/keys/style_apple.png" width="100" alt="Apple Modern"></td>
-        <td align="center"><img src="docs/keys/style_retro.png" width="115" alt="Retro Vintage"></td>
-        <td align="center"><img src="docs/keys/style_minimal.png" width="95" alt="Minimal Pill"></td>
-        <td align="center"><img src="docs/keys/style_m0116.png" width="105" alt="M0116 Classic"></td>
+        <td align="center" width="20%"><img src="docs/keys/style_pbt.png" width="115" alt="PBT Mechanical"></td>
+        <td align="center" width="20%"><img src="docs/keys/style_apple.png" width="115" alt="Apple Modern"></td>
+        <td align="center" width="20%"><img src="docs/keys/style_retro.png" width="115" alt="Retro Vintage"></td>
+        <td align="center" width="20%"><img src="docs/keys/style_minimal.png" width="115" alt="Minimal Pill"></td>
+        <td align="center" width="20%"><img src="docs/keys/style_m0116.png" width="115" alt="M0116 Classic"></td>
       </tr>
       <tr>
         <td align="center"><sub>Deep sculpted dish</sub></td>

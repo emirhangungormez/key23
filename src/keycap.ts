@@ -423,7 +423,7 @@ export const pbtThemes: Record<KeycapTheme, {
   white: {
     name: 'Pure White',
     mod: pbtTokens.white,
-    alpha: makePbtTokens('#94a3b8'),
+    alpha: pbtTokens.white,
   },
   blue: {
     name: 'Ocean Blue',
