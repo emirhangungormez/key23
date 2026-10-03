@@ -12,9 +12,17 @@ pub fn request_exit(app: &AppHandle) {
     app.exit(0);
 }
 
-fn log(_msg: &str) {
+pub fn log(msg: &str) {
+    if let Ok(mut p) = std::env::current_exe() {
+        p.pop();
+        let log_file = p.join("key23_runtime.log");
+        use std::io::Write;
+        if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open(log_file) {
+            let _ = writeln!(f, "[{:?}] {}", std::time::SystemTime::now(), msg);
+        }
+    }
     #[cfg(debug_assertions)]
-    println!("[{:?}] {}", std::time::SystemTime::now(), _msg);
+    println!("[{:?}] {}", std::time::SystemTime::now(), msg);
 }
 
 #[tauri::command]
@@ -98,10 +106,10 @@ fn set_hud_position(app: AppHandle, position: String) -> Result<(), String> {
         if let Ok(Some(monitor)) = overlay_win.primary_monitor() {
             let screen_size = monitor.size();
             let (x, y) = match position.as_str() {
-                "top_center" => ((screen_size.width as i32 - 520) / 2, 60),
-                "bottom_left" => (60, screen_size.height as i32 - 170),
-                "bottom_right" => (screen_size.width as i32 - 580, screen_size.height as i32 - 170),
-                _ => ((screen_size.width as i32 - 520) / 2, screen_size.height as i32 - 170),
+                "top_center" => ((screen_size.width as i32 - 520) / 2, 70),
+                "bottom_left" => (60, screen_size.height as i32 - 240),
+                "bottom_right" => (screen_size.width as i32 - 580, screen_size.height as i32 - 240),
+                _ => ((screen_size.width as i32 - 520) / 2, screen_size.height as i32 - 240),
             };
             let _ = overlay_win.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y }));
         }
@@ -227,7 +235,7 @@ fn reset_hud_position(app: AppHandle) -> Result<(), String> {
             let default_w = 620;
             let default_h = 160;
             let x = (screen_size.width as i32 - default_w) / 2;
-            let y = screen_size.height as i32 - 170;
+            let y = screen_size.height as i32 - 240;
             let _ = overlay_win.set_size(tauri::Size::Physical(tauri::PhysicalSize {
                 width: default_w as u32,
                 height: default_h as u32,
@@ -299,17 +307,19 @@ pub fn run() {
                 Err(e) => log(&format!("Tray setup error: {:?}", e)),
             }
 
-            // Create overlay window (Floating HUD) programmatically after main webview is initialized
+            // 1. Create overlay window (Floating HUD) programmatically (hidden on start)
             log("Creating overlay HUD window programmatically...");
             match WebviewWindowBuilder::new(app, "overlay", WebviewUrl::App("overlay.html".into()))
                 .title("Key23 HUD")
-                .inner_size(680.0, 180.0)
+                .inner_size(700.0, 220.0)
                 .resizable(false)
                 .decorations(false)
                 .transparent(true)
                 .always_on_top(true)
                 .skip_taskbar(true)
+                .shadow(false)
                 .visible(false)
+                .focused(false)
                 .build()
             {
                 Ok(overlay_win) => {
@@ -322,7 +332,7 @@ pub fn run() {
                             use windows::Win32::UI::WindowsAndMessaging::{
                                 GetWindowLongW, SetWindowLongW, GWL_EXSTYLE,
                                 WS_EX_TOPMOST, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE, WS_EX_TRANSPARENT,
-                                SetWindowPos, HWND_TOPMOST, SWP_NOMOVE, SWP_NOSIZE, SWP_NOACTIVATE, SWP_FRAMECHANGED
+                                SetWindowPos, HWND_TOPMOST, SWP_NOMOVE, SWP_NOSIZE, SWP_NOACTIVATE
                             };
                             let hwnd = windows::Win32::Foundation::HWND(h.0 as *mut _);
                             let mut ex_style = GetWindowLongW(hwnd, GWL_EXSTYLE);
@@ -332,7 +342,7 @@ pub fn run() {
                                 hwnd,
                                 HWND_TOPMOST,
                                 0, 0, 0, 0,
-                                SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_FRAMECHANGED,
+                                SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE,
                             );
                         }
                     }
@@ -340,7 +350,7 @@ pub fn run() {
                     if let Ok(Some(monitor)) = overlay_win.primary_monitor() {
                         let screen_size = monitor.size();
                         let x = (screen_size.width as i32 - 620) / 2;
-                        let y = screen_size.height as i32 - 170;
+                        let y = screen_size.height as i32 - 240;
                         let _ = overlay_win.set_position(tauri::Position::Physical(tauri::PhysicalPosition { x, y }));
                     }
                 }
@@ -349,7 +359,7 @@ pub fn run() {
                 }
             }
 
-            // Create mouse cursor follower window programmatically
+            // 2. Create mouse cursor follower window programmatically (hidden on start)
             log("Creating mouse follower window programmatically...");
             match WebviewWindowBuilder::new(app, "mouse", WebviewUrl::App("mouse.html".into()))
                 .title("Key23 Mouse Follower")
@@ -359,7 +369,9 @@ pub fn run() {
                 .transparent(true)
                 .always_on_top(true)
                 .skip_taskbar(true)
+                .shadow(false)
                 .visible(false)
+                .focused(false)
                 .build()
             {
                 Ok(mouse_win) => {
@@ -371,7 +383,7 @@ pub fn run() {
                             use windows::Win32::UI::WindowsAndMessaging::{
                                 GetWindowLongW, SetWindowLongW, GWL_EXSTYLE,
                                 WS_EX_TOPMOST, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE, WS_EX_TRANSPARENT,
-                                SetWindowPos, HWND_TOPMOST, SWP_NOMOVE, SWP_NOSIZE, SWP_NOACTIVATE, SWP_FRAMECHANGED
+                                SetWindowPos, HWND_TOPMOST, SWP_NOMOVE, SWP_NOSIZE, SWP_NOACTIVATE
                             };
                             let hwnd = windows::Win32::Foundation::HWND(h.0 as *mut _);
                             let mut ex_style = GetWindowLongW(hwnd, GWL_EXSTYLE);
@@ -381,7 +393,7 @@ pub fn run() {
                                 hwnd,
                                 HWND_TOPMOST,
                                 0, 0, 0, 0,
-                                SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_FRAMECHANGED,
+                                SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE,
                             );
                         }
                     }
@@ -391,37 +403,21 @@ pub fn run() {
                 }
             }
 
-            // Pre-create picker window programmatically (hidden)
-            log("Pre-creating picker window programmatically...");
-            match WebviewWindowBuilder::new(app, "picker", WebviewUrl::App("picker.html".into()))
-                .title("Key23 Position Picker")
-                .resizable(false)
-                .decorations(false)
-                .transparent(true)
-                .always_on_top(true)
-                .skip_taskbar(true)
-                .visible(false)
-                .build()
-            {
-                Ok(picker_win) => {
-                    let _ = picker_win.hide();
-                }
-                Err(e) => {
-                    log(&format!("Failed to pre-create picker window: {:?}", e));
-                }
-            }
-
-            // Ensure main window is shown and focused
+            // 3. Show and focus main settings window cleanly
             if let Some(main_win) = app.get_webview_window("main") {
                 log("Showing main settings window");
                 let _ = main_win.show();
                 let _ = main_win.unminimize();
                 let _ = main_win.set_always_on_top(true);
                 let _ = main_win.set_focus();
-                let _ = main_win.set_always_on_top(false);
+                let main_clone = main_win.clone();
+                std::thread::spawn(move || {
+                    std::thread::sleep(std::time::Duration::from_millis(250));
+                    let _ = main_clone.set_always_on_top(false);
+                });
             }
 
-            // Single-instance activator listener: when another Key23 instance starts, restore & focus this window!
+            // 4. Single-instance activator listener: when another Key23 instance starts, restore & focus this window!
             unsafe {
                 use windows::core::w;
                 use windows::Win32::Foundation::{CloseHandle, WAIT_OBJECT_0};
@@ -441,7 +437,11 @@ pub fn run() {
                                     let _ = main_win.unminimize();
                                     let _ = main_win.set_always_on_top(true);
                                     let _ = main_win.set_focus();
-                                    let _ = main_win.set_always_on_top(false);
+                                    let main_clone = main_win.clone();
+                                    std::thread::spawn(move || {
+                                        std::thread::sleep(std::time::Duration::from_millis(250));
+                                        let _ = main_clone.set_always_on_top(false);
+                                    });
                                 }
                             } else {
                                 break;

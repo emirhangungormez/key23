@@ -119,8 +119,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   black: {
     swatch: '#141414',
     textColor: '#ffffff',
-    groupBg: 'rgba(23, 23, 23, 0.95)',
-    groupStroke: 'rgba(61, 61, 61, 0.62)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#383838',
     surfaceBase: '#090909',
     surfaceShadow: '#0D0D0D',
@@ -132,8 +132,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   white: {
     swatch: '#F5F5F5',
     textColor: '#63625D',
-    groupBg: 'rgba(230, 230, 230, 0.92)',
-    groupStroke: 'rgba(191, 191, 191, 0.70)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#FCFCFC',
     surfaceBase: '#F0F0F0',
     surfaceShadow: '#E0E0E0',
@@ -145,8 +145,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   citrus: {
     swatch: '#F1EFC0',
     textColor: '#63625D',
-    groupBg: 'rgba(205, 205, 133, 0.90)',
-    groupStroke: 'rgba(174, 172, 102, 0.65)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#FAFAF5',
     surfaceBase: '#F1EFBF',
     surfaceShadow: '#E6E3A8',
@@ -158,8 +158,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   indigo: {
     swatch: '#9098B0',
     textColor: '#3B3F44',
-    groupBg: 'rgba(56, 64, 80, 0.92)',
-    groupStroke: 'rgba(120, 132, 161, 0.65)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#9FA7BF',
     surfaceBase: '#9098B0',
     surfaceShadow: '#7D859D',
@@ -171,8 +171,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   rose: {
     swatch: '#F0E0E0',
     textColor: '#595655',
-    groupBg: 'rgba(194, 175, 171, 0.90)',
-    groupStroke: 'rgba(205, 185, 186, 0.65)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#F8EAEB',
     surfaceBase: '#F0E0E0',
     surfaceShadow: '#E4D0D2',
@@ -184,8 +184,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   red: {
     swatch: '#FF4740',
     textColor: '#ffffff',
-    groupBg: 'rgba(43, 22, 19, 0.95)',
-    groupStroke: 'rgba(128, 47, 38, 0.62)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#FF635B',
     surfaceBase: '#FF4B44',
     surfaceShadow: '#EC3733',
@@ -197,8 +197,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   green: {
     swatch: '#78E700',
     textColor: '#ffffff',
-    groupBg: 'rgba(31, 37, 15, 0.95)',
-    groupStroke: 'rgba(92, 166, 15, 0.60)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#92F710',
     surfaceBase: '#75E600',
     surfaceShadow: '#59B800',
@@ -210,8 +210,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   blue: {
     swatch: '#386BFF',
     textColor: '#ffffff',
-    groupBg: 'rgba(20, 26, 42, 0.95)',
-    groupStroke: 'rgba(62, 110, 230, 0.62)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#5492FF',
     surfaceBase: '#3B74FF',
     surfaceShadow: '#1C50F0',
@@ -223,8 +223,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   purple: {
     swatch: '#5C2EB0',
     textColor: '#ffffff',
-    groupBg: 'rgba(31, 3, 64, 0.94)',
-    groupStroke: 'rgba(64, 31, 117, 0.72)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#874FDC',
     surfaceBase: '#733DC9',
     surfaceShadow: '#6333BA',
@@ -236,8 +236,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   yellow: {
     swatch: '#FEB931',
     textColor: '#ffffff',
-    groupBg: 'rgba(41, 31, 13, 0.95)',
-    groupStroke: 'rgba(111, 82, 29, 0.62)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#FFCC4A',
     surfaceBase: '#FEB62F',
     surfaceShadow: '#EC9C1F',
@@ -249,8 +249,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   orange: {
     swatch: '#FE721F',
     textColor: '#ffffff',
-    groupBg: 'rgba(45, 27, 13, 0.95)',
-    groupStroke: 'rgba(133, 65, 24, 0.62)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#FF8532',
     surfaceBase: '#FF7423',
     surfaceShadow: '#EC5716',
@@ -262,8 +262,8 @@ export const themeTokenRegistry: Record<string, KeycapThemeTokens> = {
   pink: {
     swatch: '#E634C8',
     textColor: '#ffffff',
-    groupBg: 'rgba(41, 19, 37, 0.95)',
-    groupStroke: 'rgba(116, 42, 101, 0.62)',
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: '#EE4ED5',
     surfaceBase: '#E739CC',
     surfaceShadow: '#D127B5',
@@ -499,8 +499,8 @@ export function setCustomDualColorTheme(modHex: string, alphaHex: string) {
   (themeTokenRegistry as any)['custom'] = {
     swatch: alphaHex,
     textColor: textColor,
-    groupBg: alphaHex,
-    groupStroke: darkened(alphaHex, 0.3),
+    groupBg: 'rgba(18, 18, 20, 0.95)',
+    groupStroke: 'rgba(255, 255, 255, 0.12)',
     surfaceHighlight: lightened(alphaHex, 0.2),
     surfaceBase: alphaHex,
     surfaceShadow: darkened(alphaHex, 0.25),
@@ -559,62 +559,47 @@ export function getPodContainerStyle(
   padding: string;
   gap: string;
   boxShadow: string;
-  backdropFilter?: string;
 } {
-  const tokens = getThemeTokens(theme);
-  const bgMode = settings?.podBgMode || 'auto';
-  const customColor = settings?.podBgCustomColor || '#171717';
+  const bgMode = settings?.podBgMode || 'custom';
+  const customColor = settings?.podBgCustomColor || '#121216';
   const opacity = (settings?.podBgOpacity ?? 95) / 100;
 
-  let bg = tokens.groupBg;
-  let border = `1.5px solid ${tokens.groupStroke}`;
-  let boxShadow = '0 16px 36px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4)';
-  let backdropFilter = 'blur(20px) saturate(180%)';
+  let bg = 'rgba(18, 18, 20, 0.95)';
+  let border = 'none';
+  let boxShadow = '0 8px 24px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3)';
 
-  if (bgMode === 'dark') {
-    bg = `rgba(18, 18, 20, ${opacity})`;
-    border = '1.5px solid rgba(255, 255, 255, 0.12)';
-  } else if (bgMode === 'glass') {
-    bg = `rgba(255, 255, 255, ${Math.min(0.28, opacity * 0.22)})`;
-    border = '1.5px solid rgba(255, 255, 255, 0.25)';
-    backdropFilter = 'blur(28px) saturate(200%)';
-  } else if (bgMode === 'translucent') {
-    bg = `rgba(0, 0, 0, ${opacity * 0.45})`;
-    border = '1.5px solid rgba(255, 255, 255, 0.08)';
-    backdropFilter = 'blur(16px)';
-  } else if (bgMode === 'none') {
+  if (bgMode === 'none' || settings?.showKeyBackground === false) {
     bg = 'transparent';
     border = 'none';
     boxShadow = 'none';
-    backdropFilter = 'none';
-  } else if (bgMode === 'custom') {
+  } else {
     const [r, g, b] = parseHex(customColor);
     bg = `rgba(${r}, ${g}, ${b}, ${opacity})`;
-    border = `1.5px solid rgba(${Math.min(255, r + 45)}, ${Math.min(255, g + 45)}, ${Math.min(255, b + 45)}, 0.45)`;
+    border = 'none';
   }
 
-  let borderRadius = '18px';
-  let padding = '10px 14px';
-  let gap = '6px';
+  let borderRadius = '20px';
+  let padding = '12px 18px';
+  let gap = '8px';
 
   if (style === 'minimal') {
     borderRadius = '9999px';
-    padding = '8px 14px';
-    gap = '-8px';
-    if (bgMode === 'auto') {
+    padding = '10px 18px';
+    gap = '-6px';
+    if (bgMode !== 'none') {
       boxShadow = '0 12px 28px rgba(0,0,0,0.5)';
     }
   } else if (style === 'retro') {
-    borderRadius = '24px';
-    padding = '12px 14px';
+    borderRadius = '26px';
+    padding = '14px 20px';
     gap = '10px';
-    if (bgMode === 'auto') {
+    if (bgMode !== 'none') {
       boxShadow = '0 20px 40px rgba(0,0,0,0.65), 0 6px 16px rgba(0,0,0,0.4)';
     }
   } else if (style === 'm0116') {
-    borderRadius = '12px';
-    padding = '8px 12px';
-    gap = '6px';
+    borderRadius = '14px';
+    padding = '10px 16px';
+    gap = '8px';
   }
 
   return {
@@ -624,7 +609,6 @@ export function getPodContainerStyle(
     padding,
     gap,
     boxShadow,
-    backdropFilter,
   };
 }
 
@@ -711,7 +695,7 @@ export function renderKeycap(
     const pbtTok = (isModifier || isSpecial) && !isArrowKey ? themeData.mod : themeData.alpha;
 
     let widthPx = 100;
-    if (isSpaceKey) widthPx = 282;
+    if (isSpaceKey) widthPx = 140;
     else if (isCapsKey) widthPx = 170;
     else if (isReturnKey) widthPx = 154;
     else if (isTabKey || isDeleteKey) widthPx = 138;
@@ -839,7 +823,7 @@ export function renderKeycap(
       `;
     } else if (isSpaceKey) {
       legendContent = `
-        <path d="M${dishCenterX - 24} ${dishCenterY} h48 v5" fill="none" stroke="${pbtTok.TextColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M${dishCenterX - 18} ${dishCenterY} h36 v5" fill="none" stroke="${pbtTok.TextColor}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       `;
     } else if (isReturnKey) {
       legendContent = `
@@ -920,7 +904,7 @@ export function renderKeycap(
   // =========================================================================
   if (style === 'apple') {
     let widthPx = 74;
-    if (isSpaceKey) widthPx = 250;
+    if (isSpaceKey) widthPx = 130;
     else if (isCapsKey) widthPx = 140;
     else if (isReturnKey) widthPx = 120;
     else if (isTabKey || isEscKey || isDeleteKey) widthPx = 110;
@@ -1025,7 +1009,7 @@ export function renderKeycap(
     } else if (isSpaceKey) {
       const symY = isPressed ? 37 : 32;
       legendContent = `
-        <path d="M${capCenterX - 22} ${symY} h44 v5" fill="none" stroke="${textColor}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M${capCenterX - 18} ${symY} h36 v5" fill="none" stroke="${textColor}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       `;
     } else if (isReturnKey) {
       const textY = isPressed ? 58 : 53;
@@ -1204,7 +1188,7 @@ export function renderKeycap(
   if (style === 'retro') {
     // RetroKeycapMetrics: height = 96, minWidth = 96, extraWidth = 8, bodyRadius = 24, faceRadius = 20
     let widthPx = 96;
-    if (isSpaceKey) widthPx = 270;
+    if (isSpaceKey) widthPx = 140;
     else if (isCapsKey) widthPx = 160;
     else if (isReturnKey) widthPx = 150;
     else if (isShiftKey) widthPx = 135;
@@ -1373,8 +1357,8 @@ export function renderKeycap(
     let widthPx = 64;
     let fontSize = 24;
     if (isSpaceKey) {
-      widthPx = 220;
-      fontSize = 26;
+      widthPx = 110;
+      fontSize = 20;
     } else if (isCapsKey) {
       widthPx = 110;
       fontSize = 24;
@@ -1408,7 +1392,7 @@ export function renderKeycap(
   // Apple Standard Keyboard 1987 vintage sculpted keycap:
   // height = 88, minWidth = 80, bodyRadius = 9, faceRadius = 7
   let widthPx = 80;
-  if (isSpaceKey) widthPx = 240;
+  if (isSpaceKey) widthPx = 130;
   else if (isCapsKey) widthPx = 140;
   else if (isReturnKey) widthPx = 130;
   else if (isShiftKey) widthPx = 115;

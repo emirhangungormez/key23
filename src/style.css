@@ -127,7 +127,7 @@ svg {
   vertical-align: middle;
 }
 
-#key-cluster, #preview-pod, #compact-preview-pod {
+#key-cluster, #compact-preview-pod {
   display: inline-flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
@@ -136,6 +136,24 @@ svg {
   justify-content: center !important;
   line-height: 1;
   max-width: 100%;
+  border: none !important;
+  outline: none !important;
+}
+
+#preview-pod {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1;
+  width: max-content !important;
+  max-width: none !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  border: none !important;
+  outline: none !important;
 }
 
 #key-pod {
@@ -146,7 +164,7 @@ svg {
   align-items: center !important;
   justify-content: center !important;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible !important;
 }
 
 .keycap-wrapper {

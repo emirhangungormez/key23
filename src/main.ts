@@ -90,9 +90,9 @@ function renderApp() {
       <div class="flex gap-2 items-stretch">
         
         <!-- Sol: Renkli Canlı Önizleme Kutusu (Gradient Arka Plan) -->
-        <div id="preview-box" class="flex-1 h-24 rounded-xl flex items-center justify-center p-2 relative overflow-hidden transition-all duration-300" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 50%, #0f172a 100%); box-shadow: inset 0 0 35px rgba(59, 130, 246, 0.25); border: 1.5px solid rgba(255, 255, 255, 0.16);">
+        <div id="preview-box" class="flex-1 h-28 rounded-xl flex items-center justify-center p-2 relative overflow-hidden transition-all duration-300" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 50%, #0f172a 100%); box-shadow: inset 0 0 35px rgba(59, 130, 246, 0.25); border: 1.5px solid rgba(255, 255, 255, 0.16);">
           <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.22), transparent 70%);"></div>
-          <div id="preview-pod" class="inline-flex items-center gap-2.5 relative z-10">
+          <div id="preview-pod" class="inline-flex items-center gap-2.5 relative z-10" style="width: max-content !important; max-width: none !important; box-sizing: border-box !important;">
             <!-- Caps Lock ve K -->
           </div>
         </div>
@@ -221,7 +221,7 @@ function renderApp() {
             currentSettings.style === 'pbt' ? 'cap-card-active' : 'cap-card hover:border-white/20'
           }">
             <div class="h-7 flex items-center justify-center">
-              <div class="scale-[0.32] origin-center">
+              <div class="scale-[0.26] origin-center">
                 ${renderKeycap('pbt', 'K', null, false, false, false, 'pbt', currentSettings.theme, 'en')}
               </div>
             </div>
@@ -233,7 +233,7 @@ function renderApp() {
             currentSettings.style === 'apple' ? 'cap-card-active' : 'cap-card hover:border-white/20'
           }">
             <div class="h-7 flex items-center justify-center">
-              <div class="scale-[0.42] origin-center">
+              <div class="scale-[0.35] origin-center">
                 ${renderKeycap('apple', 'K', null, false, false, false, 'apple', currentSettings.theme, 'en')}
               </div>
             </div>
@@ -245,7 +245,7 @@ function renderApp() {
             currentSettings.style === 'retro' ? 'cap-card-active' : 'cap-card hover:border-white/20'
           }">
             <div class="h-7 flex items-center justify-center">
-              <div class="scale-[0.33] origin-center">
+              <div class="scale-[0.27] origin-center">
                 ${renderKeycap('retro', 'K', null, false, false, false, 'retro', currentSettings.theme, 'en')}
               </div>
             </div>
@@ -257,7 +257,7 @@ function renderApp() {
             currentSettings.style === 'minimal' ? 'cap-card-active' : 'cap-card hover:border-white/20'
           }">
             <div class="h-7 flex items-center justify-center">
-              <div class="scale-[0.40] origin-center">
+              <div class="scale-[0.38] origin-center">
                 ${renderKeycap('minimal', 'K', null, false, false, false, 'minimal', currentSettings.theme, 'en')}
               </div>
             </div>
@@ -269,7 +269,7 @@ function renderApp() {
             currentSettings.style === 'm0116' ? 'cap-card-active' : 'cap-card hover:border-white/20'
           }">
             <div class="h-7 flex items-center justify-center">
-              <div class="scale-[0.36] origin-center">
+              <div class="scale-[0.28] origin-center">
                 ${renderKeycap('m0116', 'K', null, false, false, false, 'm0116', currentSettings.theme, 'en')}
               </div>
             </div>
@@ -314,7 +314,7 @@ function renderApp() {
         </div>
 
         <!-- Sliders: Boyut & Kalma Süresi -->
-        <div class="grid grid-cols-2 gap-3 pt-0.5">
+        <div class="grid grid-cols-2 gap-4 pt-0.5">
           <div>
             <div class="flex justify-between items-center text-[10px] mb-1">
               <span class="text-zinc-400">Boyut</span>
@@ -349,6 +349,42 @@ function renderApp() {
           </div>
         </div>
 
+        <!-- Tuş Arka Plan Rengi (HUD Zemin) -->
+        <div class="pt-1.5 border-t border-white/[0.06] space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] text-zinc-300 font-medium">Tuş Arka Planı (Zemin)</span>
+            <div class="flex items-center gap-1.5">
+              <span id="txt-pod-opacity" class="text-[10px] font-mono text-blue-400 font-medium">${currentSettings.podBgMode === 'none' ? 'Şeffaf' : `%${currentSettings.podBgOpacity ?? 95}`}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between gap-1.5">
+            <div class="flex items-center gap-1">
+              <!-- Siyah -->
+              <button data-set-pod-bg="#121216" title="Siyah Zemin" class="w-6 h-6 rounded-md border flex items-center justify-center transition cursor-pointer ${currentSettings.podBgMode !== 'none' && (currentSettings.podBgCustomColor || '#121216') === '#121216' ? 'border-blue-400 ring-1 ring-blue-400' : 'border-white/20 hover:border-white/40'}" style="background: #121216;">
+                <span class="w-2 h-2 rounded-full bg-white/70"></span>
+              </button>
+              <!-- Koyu Gri -->
+              <button data-set-pod-bg="#27272a" title="Grafit Koyu Gri" class="w-6 h-6 rounded-md border flex items-center justify-center transition cursor-pointer ${currentSettings.podBgMode !== 'none' && currentSettings.podBgCustomColor === '#27272a' ? 'border-blue-400 ring-1 ring-blue-400' : 'border-white/20 hover:border-white/40'}" style="background: #27272a;">
+              </button>
+              <!-- Gece Mavisi -->
+              <button data-set-pod-bg="#0f172a" title="Gece Mavisi" class="w-6 h-6 rounded-md border flex items-center justify-center transition cursor-pointer ${currentSettings.podBgMode !== 'none' && currentSettings.podBgCustomColor === '#0f172a' ? 'border-blue-400 ring-1 ring-blue-400' : 'border-white/20 hover:border-white/40'}" style="background: #0f172a;">
+              </button>
+              <!-- Şeffaf -->
+              <button id="btn-pod-transparent" title="Şeffaf (Zeminsiz)" class="px-1.5 h-6 rounded-md border text-[9px] font-medium flex items-center justify-center transition cursor-pointer ${currentSettings.podBgMode === 'none' ? 'border-blue-400 bg-blue-500/20 text-blue-300 ring-1 ring-blue-400' : 'border-white/20 text-zinc-400 hover:text-white hover:border-white/40 bg-white/[0.04]'}">
+                Şeffaf
+              </button>
+            </div>
+
+            <!-- Özel Renk Seçici & Opaklık -->
+            <div class="flex items-center gap-1.5">
+              <span class="text-[9px] text-zinc-400">Renk:</span>
+              <input type="color" id="picker-pod-color" value="${currentSettings.podBgCustomColor || '#121216'}" class="w-5 h-5 rounded cursor-pointer border border-white/20 p-0 bg-transparent" />
+              <input id="slider-pod-opacity" type="range" min="20" max="100" step="5" value="${currentSettings.podBgOpacity ?? 95}" title="Zemin Opaklığı" class="w-14 cursor-pointer" />
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -367,13 +403,13 @@ function updatePreviewArea() {
 
   // Sabit ve temiz önizleme ölçeği (Göz dolduran, tam ortalanmış net tuşlar)
   const scaleMap: Record<KeycapStyle, number> = {
-    pbt: 0.72,
-    retro: 0.72,
-    m0116: 0.74,
-    apple: 0.82,
-    minimal: 0.86,
+    pbt: 0.65,
+    retro: 0.65,
+    m0116: 0.68,
+    apple: 0.72,
+    minimal: 0.75,
   };
-  const effectiveScale = scaleMap[style] || 0.72;
+  const effectiveScale = scaleMap[style] || 0.65;
 
   // Ön izleme kutusunun arkaplanını renkli ve canlı yap
   const previewBox = document.getElementById('preview-box');
@@ -395,22 +431,36 @@ function updatePreviewArea() {
     previewBox.style.background = `linear-gradient(135deg, ${c1} 0%, ${c2} 60%, #090d16 100%)`;
   }
 
-  // Ön izleme içindeki tuşların arkasındaki pod kutusunu kaldır (tuşlar renkli kutu üstünde doğrudan süzülür)
-  pod.style.background = 'transparent';
-  pod.style.border = 'none';
-  pod.style.borderRadius = '0';
-  pod.style.padding = '0';
-  pod.style.boxShadow = 'none';
-  pod.style.gap = '10px';
-  (pod.style as any).backdropFilter = 'none';
-  (pod.style as any).webkitBackdropFilter = 'none';
+  // Canlı ön izleme pod zemin stili (Kullanıcının belirlediği zemin rengi ve kenarlık)
+  const isBgEnabled = currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none';
+  if (isBgEnabled) {
+    const podStyle = getPodContainerStyle(style, theme, currentSettings);
+    pod.style.background = podStyle.background;
+    pod.style.border = 'none';
+    pod.style.outline = 'none';
+    pod.style.borderRadius = podStyle.borderRadius;
+    pod.style.padding = podStyle.padding || '12px 18px';
+    pod.style.boxShadow = podStyle.boxShadow;
+    pod.style.gap = podStyle.gap || '8px';
+  } else {
+    pod.style.background = 'transparent';
+    pod.style.border = 'none';
+    pod.style.borderRadius = '0';
+    pod.style.padding = '0';
+    pod.style.boxShadow = 'none';
+    pod.style.gap = '8px';
+  }
 
+  pod.style.boxSizing = 'border-box';
+  pod.style.width = 'max-content';
+  pod.style.maxWidth = 'none';
+  pod.style.flexShrink = '0';
   pod.style.transform = `scale(${effectiveScale})`;
   pod.style.transformOrigin = 'center center';
 
   // EXACTLY TWO KEYS: Caps Lock + K (Büyük, net ve ortalı)
   pod.innerHTML = `
-    ${renderKeycap('caps', 'caps lock', 'caps', false, true, true, style, theme, currentSettings.keyboardLayout)}
+    ${renderKeycap('caps', 'caps lock', 'caps', false, false, true, style, theme, currentSettings.keyboardLayout)}
     ${renderKeycap('k', 'K', null, false, false, false, style, theme, currentSettings.keyboardLayout)}
   `;
 }
@@ -621,6 +671,51 @@ function attachEventListeners() {
     currentSettings.onlyShortcuts = !currentSettings.onlyShortcuts;
     saveSettings(currentSettings);
     renderApp();
+  });
+
+  // Pod Background Color, Presets and Opacity
+  document.querySelectorAll('[data-set-pod-bg]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const color = (e.currentTarget as HTMLElement).getAttribute('data-set-pod-bg');
+      if (color) {
+        currentSettings.podBgMode = 'custom';
+        currentSettings.podBgCustomColor = color;
+        currentSettings.showKeyBackground = true;
+        saveSettings(currentSettings);
+        renderApp();
+      }
+    });
+  });
+
+  document.getElementById('btn-pod-transparent')?.addEventListener('click', () => {
+    currentSettings.podBgMode = 'none';
+    currentSettings.showKeyBackground = false;
+    saveSettings(currentSettings);
+    renderApp();
+  });
+
+  const pickerPodColor = document.getElementById('picker-pod-color') as HTMLInputElement;
+  pickerPodColor?.addEventListener('input', (e) => {
+    const val = (e.target as HTMLInputElement).value;
+    currentSettings.podBgMode = 'custom';
+    currentSettings.podBgCustomColor = val;
+    currentSettings.showKeyBackground = true;
+    saveSettings(currentSettings);
+    updatePreviewArea();
+  });
+
+  const sliderPodOpacity = document.getElementById('slider-pod-opacity') as HTMLInputElement;
+  sliderPodOpacity?.addEventListener('input', (e) => {
+    const val = parseInt((e.target as HTMLInputElement).value, 10);
+    currentSettings.podBgOpacity = val;
+    if (currentSettings.podBgMode === 'none') {
+      currentSettings.podBgMode = 'custom';
+      currentSettings.showKeyBackground = true;
+    }
+    const txt = document.getElementById('txt-pod-opacity');
+    if (txt) txt.textContent = `%${val}`;
+    saveSettings(currentSettings);
+    updatePreviewArea();
   });
 }
 

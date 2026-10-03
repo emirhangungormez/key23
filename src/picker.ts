@@ -47,7 +47,8 @@ app.innerHTML = `
     <!-- Exact Pod & Keycaps Preview matching HUD -->
     <div id="box-pod-container" style="
       background: ${podStyle.background};
-      border: ${podStyle.border};
+      border: none;
+      outline: none;
       border-radius: ${podStyle.borderRadius};
       padding: ${podStyle.padding};
       gap: ${podStyle.gap};

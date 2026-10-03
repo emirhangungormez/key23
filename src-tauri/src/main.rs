@@ -1,51 +1,43 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+#[cfg(windows)]
+fn ensure_single_instance_or_activate() -> bool {
+    use windows::core::w;
+    use windows::Win32::Foundation::{CloseHandle, GetLastError, ERROR_ALREADY_EXISTS};
+    use windows::Win32::System::Threading::{CreateMutexW, OpenEventW, SetEvent, EVENT_MODIFY_STATE};
 
-
-use windows::core::w;
-use windows::Win32::Foundation::{CloseHandle, ERROR_ALREADY_EXISTS, HANDLE, WIN32_ERROR};
-use windows::Win32::System::Threading::{
-    CreateMutexW, OpenEventW, SetEvent, EVENT_MODIFY_STATE,
-};
+    unsafe {
+        let mutex_res = CreateMutexW(None, true, w!("Local\\Key23_Single_Instance_Mutex_v1"));
+        if GetLastError() == ERROR_ALREADY_EXISTS {
+            if let Ok(event) = OpenEventW(EVENT_MODIFY_STATE, false, w!("Local\\Key23_Show_Event_v1")) {
+                let _ = SetEvent(event);
+                let _ = CloseHandle(event);
+            }
+            if let Ok(m) = mutex_res {
+                let _ = CloseHandle(m);
+            }
+            return false;
+        }
+    }
+    true
+}
 
 fn main() {
-    let log_msg = |_msg: &str| {
-        #[cfg(debug_assertions)]
-        println!("[{:?}] MAIN: {}", std::time::SystemTime::now(), _msg);
+    let log_msg = |msg: &str| {
+        key23_lib::log(&format!("MAIN: {}", msg));
     };
     log_msg("Entering main()");
 
-    // Prevent multiple instances: only a single instance can run at a time.
-    // If an instance is already running, wake it up and show its window!
-    static mut MUTEX_HOLDER: Option<HANDLE> = None;
-    unsafe {
-        windows::Win32::Foundation::SetLastError(WIN32_ERROR(0));
-        match CreateMutexW(None, true, w!("Local\\Key23_App_Mutex_v1")) {
-            Ok(handle) => {
-                let err = windows::Win32::Foundation::GetLastError();
-                log_msg(&format!("CreateMutexW succeeded, GetLastError = {:?}", err));
-                if err == ERROR_ALREADY_EXISTS {
-                    log_msg("Mutex already exists! Signaling existing Key23 window to restore and focus.");
-                    if let Ok(event) = OpenEventW(EVENT_MODIFY_STATE, false, w!("Local\\Key23_Show_Event_v1")) {
-                        let _ = SetEvent(event);
-                        let _ = CloseHandle(event);
-                        log_msg("Existing Key23 signaled, exiting new process.");
-                        std::process::exit(0);
-                    } else {
-                        log_msg("Mutex reported existing but no wake event listener found. Taking over mutex.");
-                        MUTEX_HOLDER = Some(handle);
-                    }
-                } else {
-                    MUTEX_HOLDER = Some(handle);
-                }
-            }
-            Err(e) => {
-                log_msg(&format!("CreateMutexW failed: {:?}", e));
-            }
+    #[cfg(windows)]
+    {
+        if !ensure_single_instance_or_activate() {
+            log_msg("Another instance is already running. Signal sent to bring window to front. Exiting this process.");
+            return;
         }
     }
-    log_msg("Mutex check passed, setting panic hook");
+
+    log_msg("Single instance confirmed, setting panic hook");
     std::panic::set_hook(Box::new(|info| {
         let payload = if let Some(s) = info.payload().downcast_ref::<&str>() {
             (*s).to_string()
@@ -64,3 +56,4 @@ fn main() {
 
     key23_lib::run();
 }
+

@@ -39,7 +39,7 @@ app.className = 'w-full h-full bg-transparent flex items-center justify-center p
 app.style.cssText = 'width: 100vw; height: 100vh; background: transparent !important; display: flex; align-items: center; justify-content: center; overflow: visible;';
 
 app.innerHTML = `
-  <div id="key-pod" class="transition-opacity duration-150 opacity-0 pointer-events-none" style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: center !important; transform-origin: center center;">
+  <div id="key-pod" class="transition-opacity duration-150 opacity-0 pointer-events-none" style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: center !important; transform-origin: center center; overflow: visible !important;">
     <div id="key-cluster" style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; white-space: nowrap !important; align-items: center !important; justify-content: center !important; gap: 8px;">
     </div>
   </div>
@@ -50,6 +50,36 @@ const cluster = document.getElementById('key-cluster')!;
 let activeKeys: Map<string, KeyEventPayload> = new Map();
 let clusterDismissTimer: any = null;
 let modifierPressed = false;
+
+const MAX_ALLOWED_KEYS = 5;
+
+function getKeyApproxWidth(item: KeyEventPayload): number {
+  const normKey = (item.key || '').toLowerCase();
+  if (normKey === 'space') return 140;
+  if (normKey === 'caps' || normKey === 'capslock') return 140;
+  if (normKey === 'return' || normKey === 'enter') return 130;
+  if (normKey === 'shift') return 120;
+  if (normKey === 'tab' || normKey === 'backspace' || normKey === 'delete') return 115;
+  if (normKey === 'command' || normKey === 'cmd' || normKey === 'win') return 105;
+  if (normKey === 'option' || normKey === 'alt') return 95;
+  if (normKey === 'control' || normKey === 'ctrl') return 95;
+  if (currentSettings.style === 'minimal') return 64;
+  if (currentSettings.style === 'apple') return 74;
+  return 96;
+}
+
+function calculateClusterTotalWidth(keys: KeyEventPayload[]): number {
+  const norm = getSizeNormalization(currentSettings.style);
+  const effectiveScale = (currentSettings.scale || 1.0) * norm;
+  const gap = 8 * effectiveScale;
+  const padding = 28 * effectiveScale;
+  let total = padding;
+  keys.forEach((k, idx) => {
+    total += getKeyApproxWidth(k) * effectiveScale;
+    if (idx > 0) total += gap;
+  });
+  return total;
+}
 
 function getMaxFittingKeys(): number {
   const norm = getSizeNormalization(currentSettings.style);
@@ -62,38 +92,35 @@ function getMaxFittingKeys(): number {
   else if (currentSettings.style === 'm0116') baseKeyWidth = 80;
 
   const gapPx = 8 * effectiveScale;
-  const paddingPx = 20 * effectiveScale;
+  const paddingPx = 28 * effectiveScale;
   const availW = Math.max(70, window.innerWidth - paddingPx);
-  const singleKeyW = (baseKeyWidth + 6) * effectiveScale;
+  const singleKeyW = (baseKeyWidth + gapPx) * effectiveScale;
 
-  const fit = Math.floor((availW + gapPx) / singleKeyW);
-  return Math.max(1, Math.min(8, fit));
+  const fit = Math.floor(availW / singleKeyW);
+  return Math.max(1, Math.min(MAX_ALLOWED_KEYS, fit));
 }
 
 function applyClusterStyle() {
   const isBgEnabled = currentSettings.showKeyBackground !== false && currentSettings.podBgMode !== 'none';
-  if (isBgEnabled) {
+  if (isBgEnabled && (activeKeys.size > 0 || isPositionPreview)) {
     const podStyle = getPodContainerStyle(
       currentSettings.style,
       currentSettings.theme,
-      {
-        ...currentSettings,
-        podBgMode: currentSettings.podBgMode === 'none' ? 'auto' : currentSettings.podBgMode,
-      }
+      currentSettings
     );
     cluster.style.background = podStyle.background;
-    cluster.style.border = podStyle.border;
+    cluster.style.border = 'none';
+    cluster.style.outline = 'none';
     cluster.style.borderRadius = podStyle.borderRadius;
     cluster.style.padding = podStyle.padding;
     cluster.style.boxShadow = podStyle.boxShadow;
     cluster.style.gap = podStyle.gap || '8px';
-    if (podStyle.backdropFilter) {
-      (cluster.style as any).backdropFilter = podStyle.backdropFilter;
-      (cluster.style as any).webkitBackdropFilter = podStyle.backdropFilter;
-    }
+    (cluster.style as any).backdropFilter = 'none';
+    (cluster.style as any).webkitBackdropFilter = 'none';
   } else {
     cluster.style.background = 'transparent';
     cluster.style.border = 'none';
+    cluster.style.outline = 'none';
     cluster.style.boxShadow = 'none';
     cluster.style.borderRadius = '0';
     cluster.style.padding = '0';
@@ -101,12 +128,14 @@ function applyClusterStyle() {
     (cluster.style as any).backdropFilter = 'none';
     (cluster.style as any).webkitBackdropFilter = 'none';
   }
-  cluster.style.display = 'flex';
+  cluster.style.display = 'inline-flex';
   cluster.style.flexDirection = 'row';
   cluster.style.flexWrap = 'nowrap';
   cluster.style.whiteSpace = 'nowrap';
   cluster.style.alignItems = 'center';
   cluster.style.justifyContent = 'center';
+  cluster.style.width = 'fit-content';
+  cluster.style.maxWidth = 'max-content';
 }
 
 applyClusterStyle();
@@ -145,12 +174,9 @@ async function updateCluster() {
   if (!currentSettings.enabled || activeKeys.size === 0) {
     pod.classList.remove('opacity-100');
     pod.classList.add('opacity-0');
-    setTimeout(() => {
-      if (activeKeys.size === 0 && !isPositionPreview) {
-        cluster.innerHTML = '';
-        invokeBackend('hide_hud');
-      }
-    }, 150);
+    cluster.innerHTML = '';
+    applyClusterStyle();
+    invokeBackend('hide_hud');
     return;
   }
 
@@ -158,12 +184,9 @@ async function updateCluster() {
   if (currentSettings.onlyShortcuts && !modifierPressed && !Array.from(activeKeys.values()).some(v => v.is_modifier)) {
     pod.classList.remove('opacity-100');
     pod.classList.add('opacity-0');
-    setTimeout(() => {
-      if (activeKeys.size === 0 && !isPositionPreview) {
-        cluster.innerHTML = '';
-        invokeBackend('hide_hud');
-      }
-    }, 150);
+    cluster.innerHTML = '';
+    applyClusterStyle();
+    invokeBackend('hide_hud');
     return;
   }
 
@@ -328,9 +351,17 @@ function handleKeyEvent(item: KeyEventPayload) {
     if (!anyStillDown && activeKeys.size > 0) {
       activeKeys.clear();
     }
-    // Dynamically limit keys based on exact container width to prevent overflow
-    const maxKeys = getMaxFittingKeys();
+    // 5-key rule: never exceed 5 keys
+    const maxKeys = Math.min(MAX_ALLOWED_KEYS, getMaxFittingKeys());
     while (activeKeys.size >= maxKeys) {
+      const firstKey = activeKeys.keys().next().value;
+      if (firstKey) activeKeys.delete(firstKey);
+      else break;
+    }
+
+    // Dynamic width limit: ensure keys (especially wide keys like Space) never overflow container
+    const maxAvailWidth = Math.max(100, window.innerWidth - 36);
+    while (activeKeys.size > 0 && calculateClusterTotalWidth([...activeKeys.values(), item]) > maxAvailWidth) {
       const firstKey = activeKeys.keys().next().value;
       if (firstKey) activeKeys.delete(firstKey);
       else break;

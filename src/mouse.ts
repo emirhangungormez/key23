@@ -44,10 +44,11 @@ function renderMouse() {
       width: 32px;
       height: 46px;
       border-radius: 9999px;
-      background: rgba(10, 12, 16, 0.82);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1.5px solid rgba(255, 255, 255, 0.22);
+      background: rgba(12, 14, 18, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
